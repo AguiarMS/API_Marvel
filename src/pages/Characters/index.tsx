@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import api from "../../services/api";
 import { Container } from "./styles";
 import { CardList } from './styles'
@@ -20,6 +20,24 @@ const Characters: React.FC = () => {
 
 
   const [characters, setCharacters] = useState<ResponseData[]>([])
+
+
+  const handleMore = useCallback(async () => {
+    try{
+        const offset = characters.length
+        const response = await api.get(`characters`, {
+          params: {
+            offset,
+          }
+        })
+
+        setCharacters([...characters, ...response.data.data.results])
+    } catch (err) {
+      console.log(err)
+    }
+  }, [characters])
+
+  
 
   useEffect(() => {
     api.get('/characters')
@@ -45,7 +63,7 @@ const Characters: React.FC = () => {
         })}
       </CardList>
 
-      <ButtonMore> More Heroes </ButtonMore>
+      <ButtonMore onClick={handleMore}> More Heroes </ButtonMore>
       
     </Container>
   )
