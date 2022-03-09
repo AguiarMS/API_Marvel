@@ -7,6 +7,9 @@ export default createGlobalStyle`
     box-sizing: border-box;
     outline: 0;
     font-family: 'Poppins', sans-serif;
+    font-weight: 700;
+
+    background-color: #333;
   }
 
 `

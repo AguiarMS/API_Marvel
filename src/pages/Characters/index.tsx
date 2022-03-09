@@ -37,7 +37,7 @@ const Characters: React.FC = () => {
     }
   }, [characters])
 
-  
+
 
   useEffect(() => {
     api.get('/characters')

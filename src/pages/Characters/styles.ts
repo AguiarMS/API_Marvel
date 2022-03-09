@@ -26,13 +26,13 @@ const urlimg = (props: ThumbNailData) => `${props.thumbnail.path}.${props.thumbn
 
 
 export const Card = styled.div`
-  background-color: #f1f1f1;
+  color: white;
   height: 450px;
   width: 300px;
   margin: 20px;
-  border-radius: 30px;
+  border-radius: 10px;
   overflow: hidden;
-  box-shadow: 2px 2px 10px 1px rgba(0, 0, 0, 0.3);
+  box-shadow: 2px 2px 10px 1px rgba(0, 0, 0, 0.8);
   padding: 10px;
 
   h2, p {
