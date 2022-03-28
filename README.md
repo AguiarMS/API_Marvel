@@ -1,7 +1,7 @@
 
 Para iniciar o projeto execute o comando abaixo no console:
 
-### `npm start` ou ### `yarn start`
+### `npm start` ou  `yarn start`
 
 ### Imagens da execução da API:
 
