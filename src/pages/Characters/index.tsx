@@ -22,16 +22,18 @@ const Characters: React.FC = () => {
   const [characters, setCharacters] = useState<ResponseData[]>([])
 
 
-  const handleMore = useCallback(async () => {
-    try{
-        const offset = characters.length
-        const response = await api.get(`characters`, {
-          params: {
-            offset,
-          }
-        })
 
-        setCharacters([...characters, ...response.data.data.results])
+
+  const handleMore = useCallback(async () => {
+    try {
+      const offset = characters.length
+      const response = await api.get(`characters`, {
+        params: {
+          offset,
+        }
+      })
+
+      setCharacters([...characters, ...response.data.data.results])
     } catch (err) {
       console.log(err)
     }
@@ -51,9 +53,23 @@ const Characters: React.FC = () => {
 
   return (
     <Container>
+      <input
+        type="search"
+        placeholder="Search..."
+        onChange={(e) => {
+          console.log(e.target.value)
+          const searchString = e.target.value.toLowerCase()
+          const filterHeroes = characters.filter((hero) => {
+            return hero.name.toLowerCase().includes(searchString)
+          })
+          setCharacters((): any => {
+            return { hero: filterHeroes }
+          })
+        }}
+      />
       <CardList>
         {characters.map(character => {
-          return(
+          return (
             <Card key={character.id} thumbnail={character.thumbnail}>
               <div id="img" />
               <h2>{character.name}</h2>
@@ -64,7 +80,7 @@ const Characters: React.FC = () => {
       </CardList>
 
       <ButtonMore onClick={handleMore}> More Heroes </ButtonMore>
-      
+
     </Container>
   )
 }
